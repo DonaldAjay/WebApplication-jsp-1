@@ -17,7 +17,7 @@
             url="jdbc:mysql://localhost:3306/db1"
             user="root"/>
         <sql:query var="list_Active_bug" dataSource="${ds}" >
-            select * from request where status='Not Fixed' or status='Re Open';
+            select * from request where status='Not Fixed' or status='Re Open' ;
         </sql:query>
         <sql:query var="list_developer_update" dataSource="${ds}" >
             select * from request where status ='Fixed' or status ='Not an Issue';
@@ -111,6 +111,9 @@
         </table>
         
         </br></br>
+        <form method="post" action="../graph.jsp" >
+            <input type="submit" value="Bug Summary">
+        </form>
         <a href="tester_logout.jsp">Logout</a>
     </center>
     </body>
