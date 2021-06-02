@@ -11,7 +11,6 @@
     String a="[";
     try
     {
-        
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db1","root","");
         Statement st = con.createStatement();
         String Xval,Yval;
@@ -22,7 +21,7 @@
             Xval = resultset.getString(1);
             Yval = resultset.getString(2);
             map = new HashMap<Object,Object>();
-            map.put("label",Xval);
+            map.put("name",Xval);
             map.put("y",Double.parseDouble(Yval));
             list.add(map);
         }   
@@ -40,34 +39,51 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Summary of Bug</title>
-<script type="text/javascript">
-window.onload = function() { 
- 
-var chart = new CanvasJS.Chart("chartContainer", {
-                        theme: "light2",
-                        animationEnabled: true,
-                        exportFileName: "Summary of Bug",
-                        exportEnabled: true,
-                        title:{
-                                text: "Summary of Bug"
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function () {
+                const chart = Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Summary of Bug'
                         },
-                        data: [{
-                                type: "pie",
-                                showInLegend: true ,
-                                legendText: "{label}",
-                                toolTipContent: "{label}: <strong>{y}%</strong>",
-                                indexLabel: "{label} {y}",
-                                dataPoints : <%out.print(datapoints);%>
-                        }]
+                    tooltip: {
+                        pointFormat: 'Bug Cleared: <b>{point.y}</b>'
+                        },
+                    accessibility: {
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.y} '
+                                },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        name: 'Bug',
+                        colorByPoint: true,
+                        data: <% out.print(datapoints); %>
+                    }]
                 });
-
-                chart.render();
-
-                }
-</script>
+            });
+        </script>
     </head>
     <body>
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+        </figure>
     </body>
 </html>
