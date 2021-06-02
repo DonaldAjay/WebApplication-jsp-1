@@ -100,6 +100,9 @@
         </div>
     <center>
         </br></br>
+        <form method="post" action="../graph.jsp" >
+            <input type="submit" value="Bug Summary">
+        </form>
         <a href="dev_logout.jsp">logout</a>
     </center>
     
