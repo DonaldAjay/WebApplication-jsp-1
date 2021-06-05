@@ -48,23 +48,52 @@
             </br> Description : <input type="text" name="desc"/>
             <input type="submit" name="submit" value="Submit"/>
         </form>
-        
-        <table border="1" cellpadding="5">
+        <script >
+            function filterTable() {
+            var dropdown, table,filter,txtValue,tr,td,i;
+            dropdown = document.getElementById("mySelector");
+            filter = dropdown.value;
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+           
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+              }
+          }
+        </script>
+        <table border="1" cellpadding="5" id ="myTable" >
             <caption><h2>Error/Bugs report </h2></caption>
+            
             <tr>
+                
                 <th>ID</th>
                 <th>Error</th>
                 <th>Description</th>
-                <th>Status</th>
+                <th>Status 
+                    <select id='mySelector' onchange="filterTable()">
+                        <option value="">All</option>
+                        <option value="Closed ">Closed</option>
+                        <option value="Fixed">Fixed</option>
+                        <option value="Re Open">Re Open</option>
+                        <option value="Not fixed">Not Fixed</option>
+                    </select></th>
                 <th>Tester</th>
                 <th>Developer</th>
-            </tr>
+            </tr>   
             <c:forEach var="error" items="${list_Active_bug.rows}">
-                <tr>
+                <tr >
                     <td>${error.ID}</td>
                     <td>${error.error}</td>
                     <td>${error.description}</td>
-                    <td>${error.status} </td>
+                    <td  >${error.status} </td>
                     <td>${error.tester}</td>
                     <td>${error.developer}</td>
                     <td><form action="tester_bug_update.jsp" method="post">
@@ -75,11 +104,11 @@
                 </tr>
             </c:forEach>
             <c:forEach var="error" items="${list_developer_update.rows}">
-                <tr>
+                <tr >
                     <td>${error.ID}</td>
                     <td>${error.error}</td>
                     <td>${error.description}</td>
-                    <td>${error.status} </td>
+                    <td >${error.status} </td>
                     <td>${error.tester}</td>
                     <td>${error.developer}</td>
                     <td>    
@@ -99,11 +128,11 @@
                 </tr>
             </c:forEach>
             <c:forEach var="error" items="${list_closed_error.rows}">
-                <tr>
+                <tr >
                     <td>${error.ID}</td>
                     <td>${error.error}</td>
                     <td>${error.description}</td>
-                    <td>${error.status} </td>
+                    <td >${error.status} </td>
                     <td>${error.tester}</td>
                     <td>${error.developer}</td>
                 </tr>  
