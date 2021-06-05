@@ -14,6 +14,7 @@ pageEncoding="UTF-8"%>
 //            st.executeUpdate("insert into closed_error (error,status) values ('"+error+"','FIXED and CLOSED')");
 //            st.executeUpdate("delete from request where error='"+error+"'");
             st.executeUpdate("update request set status='Closed' where error='"+error+"'");
+            st.executeUpdate("update request set status_code =4 where error ='"+error+"' ");
             out.println("Data is successfully Changed!"); 
         }   
         else if(update.equals("Remove")){
@@ -22,6 +23,7 @@ pageEncoding="UTF-8"%>
         }
         else if(update.equals("Reopen")){
             st.executeUpdate("update request set status='Re Open' where error='"+error+"'");
+            st.executeUpdate("update request set status_code =2 where error ='"+error+"' ");
             out.println("Data is successfully Changed!");
         } 
         response.sendRedirect("tester_home.jsp");
