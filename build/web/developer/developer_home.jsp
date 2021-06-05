@@ -25,30 +25,60 @@
             select * from request where status='Closed';
         </sql:query>
         <center>
-        <h2>
-        <%
-            try{
-                response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-            String a = session.getAttribute("username_dev").toString();
-            out.println("Hello "+a);
-            if(a==null){
-                response.sendRedirect("../indexpage.jsp");
+            <h2>
+            <%
+                try{
+                    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+                String a = session.getAttribute("username_dev").toString();
+                out.println("Hello "+a);
+                if(a==null){
+                    response.sendRedirect("../indexpage.jsp");
+                }
+                }
+                catch(Exception e){
+                    response.sendRedirect("../indexpage.jsp");
+                }
+            %>
+            </h2>
+        </center>
+    <script>
+        function filterTable(){
+            var dropdown, table,filter,txtValue,tr,td,i;
+            dropdown = document.getElementById("mySelector");
+            filter = dropdown.value;
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+           
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
             }
-            }
-            catch(Exception e){
-                response.sendRedirect("../indexpage.jsp");
-            }
-        %>
-        </h2>
-    </center>
+        }
+        </script>
         <div align="center">
-            <table border="1" cellpadding="5">
+            <table border="1" cellpadding="5" id="myTable">
                 <caption><h2>Error/Bugs Report </h2></caption>
                 <tr>
                     <th>ID</th>
                     <th>Error</th>
                     <th>Description</th>
-                    <th>Status</th>
+                    <th>Status
+                        <select id="mySelector" onchange="filterTable()">
+                            <option value="">All</option>
+                            <option value="Closed ">Closed</option>
+                            <option value="Fixed">Fixed</option>
+                            <option value="Not an Issue">Not an Issue</option>
+                            <option value="Re Open">Re Open</option>
+                            <option value="Not fixed">Not Fixed</option>
+                        </select>
+                    </th>
                     <th>Tester</th>
                     <th>Developer</th>
                 </tr>
