@@ -143,7 +143,7 @@
                         plotBackgroundColor: null,
                         plotBorderWidth: null,
                         plotShadow: false,
-                        type: 'bar'
+                        type: 'pie'
                     },
                     title: {
                         text: 'Bug Summary  '
