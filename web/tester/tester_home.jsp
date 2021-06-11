@@ -8,8 +8,53 @@
 <html>
     <head>
         <title>Tester Home</title>
+        <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        </style>
     </head>
     <body>
+        
+        
+ 
         <sql:setDataSource
             var="ds"
             driver="com.mysql.cj.jdbc.Driver"
@@ -31,6 +76,7 @@
             try{
             response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
             String a = session.getAttribute("username_test").toString();
+            session.setAttribute("username_test",a);
             out.println("Hello "+a);
             if(a==null){
                 response.sendRedirect("../indexpage.jsp");  
@@ -66,7 +112,7 @@
                     tr[i].style.display = "none";
                   }
                 }
-              }
+            }
           }
         </script>
         <table border="1" cellpadding="5" id ="myTable" >
@@ -87,6 +133,7 @@
                     </select></th>
                 <th>Tester</th>
                 <th>Developer</th>
+               
             </tr>   
             <c:forEach var="error" items="${list_Active_bug.rows}">
                 <tr >
@@ -100,6 +147,11 @@
                             <input type="submit" value="Remove" name="update"/>
                             <input type="hidden" value="${error.Error}" name="error"/>
                     </form></td>
+                    <td><form action="../bug_log.jsp" method="post" >
+                                    <input type="submit" value="Log"/>
+                                    <input type="hidden" value="${error.error}" name="error"/>
+                        </form></td>
+                    
                     
                 </tr>
             </c:forEach>
@@ -111,6 +163,7 @@
                     <td >${error.status} </td>
                     <td>${error.tester}</td>
                     <td>${error.developer}</td>
+                    
                     <td>    
                             <form action="tester_bug_update.jsp" method="post">
                                 <input type="submit" value="Close" name="update"/>
@@ -125,6 +178,10 @@
                                 <input type="hidden" value="${error.status}" name="status"/>
                             </form>
                         </td>
+                        <td><form action="../bug_log.jsp" method="post" >
+                                    <input type="submit" value="Log"/>
+                                    <input type="hidden" value="${error.error}" name="error"/>
+                        </form></td>
                 </tr>
             </c:forEach>
             <c:forEach var="error" items="${list_closed_error.rows}">
@@ -135,6 +192,11 @@
                     <td >${error.status} </td>
                     <td>${error.tester}</td>
                     <td>${error.developer}</td>
+                    <td><form action="../bug_log.jsp" method="post" >
+                                    <input type="submit" value="Log"/>
+                                    <input type="hidden" value="${error.error}" name="error"/>
+                        </form></td>
+                    
                 </tr>  
             </c:forEach>
         </table>
@@ -145,5 +207,7 @@
         </form>
         <a href="tester_logout.jsp">Logout</a>
     </center>
+
+
     </body>
 </html>
