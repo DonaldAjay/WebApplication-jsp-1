@@ -81,6 +81,7 @@
                     </th>
                     <th>Tester</th>
                     <th>Developer</th>
+                    
                 </tr>
                 <c:forEach var="error" items="${list_item.rows}">
                     <tr>
@@ -90,6 +91,7 @@
                         <td>${error.status} </td>
                         <td>${error.tester}</td>
                         <td>${error.developer}</td>
+                    
                         <td>    
                             <form action="developer_update.jsp" method="post">
                                 <input type="submit" value="Fixed" name="status"/>
@@ -102,6 +104,10 @@
                                 <input type="hidden" value="${error.Error}" name="error"/>
                             </form>
                         </td>
+                        <td><form action="../bug_log.jsp" method="post" >
+                                    <input type="submit" value="Log"/>
+                                    <input type="hidden" value="${error.error}" name="error"/>
+                        </form></td>
                         
                     </tr>
                 </c:forEach>
@@ -114,6 +120,10 @@
                     <td>${error.tester}</td>
                     <td>${error.developer}</td>
                     <td colspan="2">Waiting for Approval</td>
+                    <td><form action="../bug_log.jsp" method="post" >
+                                    <input type="submit" value="Log"/>
+                                    <input type="hidden" value="${error.error}" name="error"/>
+                        </form></td>
                 </tr>
             </c:forEach>
                 <c:forEach var="error" items="${list_closed_error.rows}">
@@ -124,6 +134,11 @@
                         <td>${error.status} </td>
                         <td>${error.tester}</td>
                         <td>${error.developer}</td>
+                        <td><form action="../bug_log.jsp" method="post" >
+                                    <input type="submit" value="Log"/>
+                                    <input type="hidden" value="${error.error}" name="error"/>
+                        </form></td>
+                
                     </tr>  
                 </c:forEach>   
             </table>
