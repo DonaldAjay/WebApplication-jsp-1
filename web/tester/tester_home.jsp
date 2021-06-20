@@ -85,7 +85,6 @@
             catch(Exception e){
                 response.sendRedirect("../indexpage.jsp");
             }
-            
         %>
         </h2>
         
@@ -205,6 +204,7 @@
         <form method="post" action="../graph.jsp" >
             <input type="submit" value="Bug Summary">
         </form>
+        
         <a href="tester_logout.jsp">Logout</a>
     </center>
 
