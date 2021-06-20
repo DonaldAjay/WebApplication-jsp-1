@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/indexpage.jsp</file>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/bug_log.jsp</file>
+            <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/login_check.jsp</file>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/developer/developer_home.jsp</file>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/graph.jsp</file>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/tester/tester_bug_update.jsp</file>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/tester/error_insert.jsp</file>
+            <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/graph_canvasjs.jsp</file>
             <file>file:/C:/Users/Donald%20P/Documents/NetBeansProjects/WebApplication1/web/tester/tester_home.jsp</file>
         </group>
     </open-files>
